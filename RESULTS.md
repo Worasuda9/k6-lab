@@ -11,7 +11,7 @@ http_req_duration
 http_req_failed
     ✓ 'rate<0.01' rate=0.00%
 Exit code after change is 99.
-- Step 0.8, what was wrong, and how the checks showed it:
+- Step 0.8, what was wrong, and how the checks showed it: The request used pepperoni and knife. After run explore.js, I noticed that it uses Pepperoni and Knife, which are uppercase. So, I change both in bug hunt file from lowercase to uppercase.
 ## Part A results
 | Step | Test type | Users | Req/s | p(95) | Max | Failed | Checks |
 | ---- | ------------ | ----- | ----- | ----- | --- | ------ | ------ |
