@@ -18,7 +18,7 @@ Exit code after change is 99.
 | A1 | Smoke | 1 |  0.518/s | 391.14ms | 392.72ms | 0.00% | 100.00% |
 | A2 | Average load | 3 | 1.28/s | 482ms | 1s | 0.00% | 100.00% |
 | A3 | Stress | 5 | 2.01/s | 696.33ms | 1.17s | 0.00% | 100.00% |
-| A4 | Spike | 5 | | | | | |
+| A4 | Spike | 5 | 1.03/s | 494.46ms | 745.51ms | 0.00% | 100.00% |
 | A5 | Soak | 2 | | | | | |
 ## Part B
 1.
