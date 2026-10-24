@@ -19,13 +19,19 @@ Exit code after change is 99.
 | A2 | Average load | 3 | 1.28/s | 482ms | 1s | 0.00% | 100.00% |
 | A3 | Stress | 5 | 2.01/s | 696.33ms | 1.17s | 0.00% | 100.00% |
 | A4 | Spike | 5 | 1.03/s | 494.46ms | 745.51ms | 0.00% | 100.00% |
-| A5 | Soak | 2 | | | | | |
+| A5 | Soak | 2 | 0.966/s | 559.56ms | 927.30ms | 0.00% | 100.00% |
 ## Part B
-1.
-2.
-3.
-4.
-5.
+1. | Step | Test type | Users | Req/s | p(95) | Max | Failed | Checks |
+| ---- | ------------ | ----- | ----- | ----- | --- | ------ | ------ |
+| A1 | Smoke | 1 |  0.518/s | 391.14ms | 392.72ms | 0.00% | 100.00% |
+| A2 | Average load | 3 | 1.28/s | 482ms | 1s | 0.00% | 100.00% |
+| A3 | Stress | 5 | 2.01/s | 696.33ms | 1.17s | 0.00% | 100.00% |
+| A4 | Spike | 5 | 1.03/s | 494.46ms | 745.51ms | 0.00% | 100.00% |
+| A5 | Soak | 2 | 0.966/s | 559.56ms | 927.30ms | 0.00% | 100.00% |
+2. Each iteration takes 1.42s, that's mean users cannot send five requests every second, because each iteration already takes more than 1 second(1.42s), so they have to wait for each iteration to finish, so total requests that could finish in 1 second is approximately 3.399 requests per second.
+3. Yes. p(95) response time increased from 482ms in a2-average test to 696.33 in a3-stress test with 5 users.
+4. The p(95) response time increased to approximately 641 ms at 60 seconds, but it later decreased to approximately 327 ms at 90 seconds.
+5. 
 6.
 7.
 8.
