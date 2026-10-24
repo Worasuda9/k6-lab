@@ -21,7 +21,8 @@ Exit code after change is 99.
 | A4 | Spike | 5 | 1.03/s | 494.46ms | 745.51ms | 0.00% | 100.00% |
 | A5 | Soak | 2 | 0.966/s | 559.56ms | 927.30ms | 0.00% | 100.00% |
 ## Part B
-1. | Step | Test type | Users | Req/s | p(95) | Max | Failed | Checks |
+1. 
+| Step | Test type | Users | Req/s | p(95) | Max | Failed | Checks |
 | ---- | ------------ | ----- | ----- | ----- | --- | ------ | ------ |
 | A1 | Smoke | 1 |  0.518/s | 391.14ms | 392.72ms | 0.00% | 100.00% |
 | A2 | Average load | 3 | 1.28/s | 482ms | 1s | 0.00% | 100.00% |
@@ -31,8 +32,25 @@ Exit code after change is 99.
 2. Each iteration takes 1.42s, that's mean users cannot send five requests every second, because each iteration already takes more than 1 second(1.42s), so they have to wait for each iteration to finish, so total requests that could finish in 1 second is approximately 3.399 requests per second.
 3. Yes. p(95) response time increased from 482ms in a2-average test to 696.33 in a3-stress test with 5 users.
 4. The p(95) response time increased to approximately 641 ms at 60 seconds, but it later decreased to approximately 327 ms at 90 seconds.
-5. 
-6.
-7.
-8.
-9.
+5. The response time fluctuated. The failure rate remained at 0%, and all checks passed. A longer soak test could reveal a memory leak, where memory is not properly released, potentially causing the application to slow down or fail.
+6. The p(95) is better because it shows the response time in 95% of requests are completed. It helps shows slower requests that average might hide.
+7. It might be because network conditions may differ.
+And also system might have different hardware, resources, or configuration. These differences can affect its request rate, response time, and failure rate.
+8. It might overload resources, slow down service, or prevent real users from accessing it.
+9. 
+Vague requirement: The home page of messaging app should load quickly and reliably.
+
+Testable requirement: With 5 virtual users accessing the messaging app's home page for 2 minutes, at least 95% of HTTP requests must complete within 1 second, fewer than 1% of requests may fail, and more than 99% of checks must pass.
+
+K6 thresholds that check: export const options = {
+  stages: [
+    { duration: '30s', target: 5 },
+    { duration: '2m', target: 5 },
+    { duration: '30s', target: 0 },
+  ],
+  thresholds: {
+    http_req_duration: ['p(95)<1000'],
+    http_req_failed: ['rate<0.01'],
+    checks: ['rate>0.99'],
+  },
+};
